@@ -14,27 +14,12 @@ meuForm.addEventListener("submit", function criarPostController(infoDoPost)
     campoCriarPost.value = "";
 
 })
-//CRUD Delete
-document.querySelector(".listaDePosts")
-    .addEventListener("click", function (infoDoPost)
-    {
-        console.log("houve um click no botão delete");
-
-        const elementoAtual = infoDoPost.target;
-        const isBtnDeleteClick = infoDoPost.target;
-            classList.constains("btn-delete");
-
-        if (isBtnDeleteClick){
-            const id = elementoAtual.parentNode.getAttribute("data-id");
-
-            apagarPost(id);
-            elementoAtual.parentNode.remove();
-        }
-    })
 
 function criarPost(dados)
 {
-    const idPost = Date.now();
+    
+    
+    idPost = Date.now();
 
     posts.push({
         id : idPost, 
@@ -52,3 +37,27 @@ function criarPost(dados)
 
     `);
 }
+
+document.querySelector(".listaDePosts").addEventListener("click", function (infoDoPost){
+    console.log("houve um click no botão delete");
+
+    const elementoAtual = infoDoPost.target;
+    const isBtDeleteClick = infoDoPost.target.classList.contains("btn-delete");
+
+    if(isBtDeleteClick)
+    {
+        const id = elementoAtual.parentNode.getAttribute("data-id");
+
+        apagarPost(id);
+        elementoAtual.parentNode.remove();
+    }
+ })
+
+ function apagarPost(id)
+    {
+        const listaDePostsTemp = posts.filter((postAtual) => 
+        {
+            return postAtual.id !== Number(id);
+        })
+        posts = listaDePostsTemp;
+    }
