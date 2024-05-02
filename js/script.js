@@ -14,6 +14,23 @@ meuForm.addEventListener("submit", function criarPostController(infoDoPost)
     campoCriarPost.value = "";
 
 })
+//CRUD Delete
+document.querySelector(".listaDePosts")
+    .addEventListener("click", function (infoDoPost)
+    {
+        console.log("houve um click no botão delete");
+
+        const elementoAtual = infoDoPost.target;
+        const isBtnDeleteClick = infoDoPost.target;
+            classList.constains("btn-delete");
+
+        if (isBtnDeleteClick){
+            const id = elementoAtual.parentNode.getAttribute("data-id");
+
+            apagarPost(id);
+            elementoAtual.parentNode.remove();
+        }
+    })
 
 function criarPost(dados)
 {
