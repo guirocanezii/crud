@@ -1,4 +1,11 @@
-let posts = [];
+let posts = [
+{id : Date.now(), conteudo: "meu primeiro post"},
+{id : Date.now(), conteudo: "meu segundo post"},
+{id : Date.now(), conteudo: "meu terceiro post"},
+{id : Date.now(), conteudo: "meu quarto post"},
+{id : Date.now(), conteudo: "meu quinto post"},
+{id : Date.now(), conteudo: "meu sexto  post"},
+];
 
 const meuForm = document.querySelector("form");
 console.log(meuForm);
@@ -54,10 +61,22 @@ document.querySelector(".listaDePosts").addEventListener("click", function (info
  })
 
  function apagarPost(id)
-    {
+{
         const listaDePostsTemp = posts.filter((postAtual) => 
         {
             return postAtual.id !== Number(id);
         })
         posts = listaDePostsTemp;
-    }
+}
+
+// CRUD - read
+function readposts()
+{
+    posts.forEach(({id, conteudo}) =>
+    {
+    criarPost({id,conteudo});
+    });
+}
+
+//chamar a função para carregar os posts salvos
+readposts();
